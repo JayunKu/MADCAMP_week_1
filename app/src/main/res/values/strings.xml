@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_calendar">계획</string>
+    <string name="title_photo">사진</string>
+    <string name="title_social">피드</string>
+    <string name="login">로그인</string>
+    <string name="signup">회원가입</string>
+    <string name="mainTitle">여행의 모든 것,</string>
 </resources>
