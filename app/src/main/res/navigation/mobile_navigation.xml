@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_home"> <!-- 앱 실행 시 첫 화면을 navigation_home으로 -->
 
+    <!-- navigation_home이라는 id 가진 bottom_nav_menu.xml의 item과 연동 -->
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.myapplication.ui.home.HomeFragment"
