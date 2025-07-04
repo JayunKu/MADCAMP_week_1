@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/main"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="213dp"
-        tools:layout_editor_absoluteY="151dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="100dp"/>
 
     <TextView
         android:id="@+id/myTextView"
@@ -26,8 +26,8 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="283dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="250dp"/>
 
     <TextView
         android:id="@+id/Title"
@@ -41,8 +41,8 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="344dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="283dp"/>
 
     <Button
         android:id="@+id/login_button"
@@ -50,8 +50,10 @@
         android:text="@string/login"
         android:background="@drawable/button"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="522dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="500dp" />
 
     <Button
         android:id="@+id/signup_button"
@@ -59,7 +61,9 @@
         style="@style/commonButton"
         android:background="@drawable/button"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="600dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="580dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
