@@ -47,26 +47,66 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="320dp"/>
 
+    <GridLayout
+        android:id="@+id/signupGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:orientation="vertical"
+        android:rowCount="2"
+        android:useDefaultMargins="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.722">
+
+
+        <TextView
+            android:id="@+id/userId"
+            style="@style/fonts_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="20dp"
+            android:text="아이디" />
+
+        <EditText
+            android:id="@+id/inputUserId"
+            style="@style/input"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="0dp"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/userPassword"
+            style="@style/fonts_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_margin="20dp"
+            android:text="비밀번호" />
+
+        <EditText
+            android:id="@+id/inputUserPassword"
+            style="@style/input"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="0dp" />
+    </GridLayout>
+
     <Button
         android:id="@+id/login_button"
         style="@style/commonButton"
+        android:layout_marginTop="600dp"
+        android:background="@drawable/button"
         android:text="@string/login"
-        android:background="@drawable/button"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="500dp" />
+        tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/signup_button"
-        android:text="@string/signup"
-        style="@style/commonButton"
-        android:background="@drawable/button"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="580dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
