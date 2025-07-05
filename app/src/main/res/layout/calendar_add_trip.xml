@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp">
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="여행 계획을 등록할게요!"
-        android:textColor="#7B4CE0"
+        android:textColor="@color/dark_purple"
         android:textStyle="bold"
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,104 +29,93 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 목적지 라벨 -->
+    <EditText
+        android:id="@+id/etPlace"
+        android:layout_width="314dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#EDEDED"
+        android:hint="여행지를 입력하세요"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlaceLabel" />
+
     <TextView
         android:id="@+id/tvPlaceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:text="목적지"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/underline"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintTop_toBottomOf="@+id/underline" />
 
-    <!-- 목적지 입력 -->
     <EditText
-        android:id="@+id/etPlace"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/etDate"
+        android:layout_width="314dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#EDEDED"
-        android:hint="여행지를 입력하세요"
-        app:layout_constraintTop_toTopOf="@id/tvPlaceLabel"
-        app:layout_constraintStart_toEndOf="@id/tvPlaceLabel"
+        android:hint="예: 2025/07/01 ~ 2025/07/05"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateLabel" />
 
-    <!-- 여행기간 라벨 -->
     <TextView
         android:id="@+id/tvDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:text="여행기간"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/etPlace"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPlaceLabel" />
 
-    <!-- 여행기간 입력 -->
-    <EditText
-        android:id="@+id/etDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#EDEDED"
-        android:hint="예: 2025/07/01 ~ 2025/07/05"
-        app:layout_constraintTop_toTopOf="@id/tvDateLabel"
-        app:layout_constraintStart_toEndOf="@id/tvDateLabel"
-        app:layout_constraintEnd_toStartOf="@+id/btnCalendar"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp" />
-
-    <!-- 달력 보기 버튼 -->
-    <Button
-        android:id="@+id/btnCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="달력 보기"
-        android:backgroundTint="#9F84EC"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toTopOf="@id/etDate"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- 계획 작성 라벨 -->
-    <TextView
-        android:id="@+id/tvPlanLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="계획 작성"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/etDate"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp" />
-
-    <!-- 계획 입력란 -->
-
-    <!-- 등록 버튼 -->
     <EditText
         android:id="@+id/etPlan"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="314dp"
+        android:layout_height="202dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#EDEDED"
         android:gravity="top"
         android:hint="여행 계획을 입력하세요"
         android:inputType="textMultiLine"
-        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvPlanLabel" />
 
-    <Button
-        android:id="@+id/btnSaveTrip"
+    <TextView
+        android:id="@+id/tvPlanLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="여행계획 등록하기"
-        android:backgroundTint="#9F84EC"
-        android:textColor="#FFFFFF"
-        android:paddingHorizontal="24dp"
-        app:layout_constraintTop_toBottomOf="@id/etPlan"
+        android:layout_marginTop="92dp"
+        android:text="계획 작성"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateLabel" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSaveTrip"
+        android:layout_width="144dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/button"
+        android:elevation="0dp"
+        android:paddingHorizontal="24dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:stateListAnimator="@null"
+        android:text="여행계획 등록하기"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etPlan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

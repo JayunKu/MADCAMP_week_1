@@ -12,8 +12,8 @@ class TripAdapter(private val tripList: MutableList<TripPlan>) :
     RecyclerView.Adapter<TripAdapter.TripViewHolder>() {
 
     fun addTrip(trip: TripPlan) {
-        tripList.add(trip)
-        notifyItemInserted(tripList.size - 1)
+        tripList.add(0, trip)
+        notifyItemInserted(0)
     }
 
     // 🔹 뷰홀더: 한 줄짜리 뷰 묶음 (calendar_trip_item.xml과 연결됨)

@@ -48,6 +48,22 @@ class HomeFragment : Fragment() {
             )
         }
 
+        parentFragmentManager.setFragmentResultListener("addTripResult", viewLifecycleOwner) { _, bundle ->
+            val place = bundle.getString("place") ?: return@setFragmentResultListener
+            val date = bundle.getString("date") ?: ""
+            val plan = bundle.getString("plan") ?: ""
+
+            val trip = TripPlan(
+                placeName = place,
+                startDate = date.split("~").getOrNull(0)?.trim() ?: "",
+                endDate = date.split("~").getOrNull(1)?.trim() ?: "",
+                imageResId = com.example.myapplication.R.drawable.main, // 예시 이미지
+                planDetail = plan
+            )
+
+            tripAdapter.addTrip(trip)
+            binding.recyclerTrips.scrollToPosition(0)
+        }
         return root
     }
 
