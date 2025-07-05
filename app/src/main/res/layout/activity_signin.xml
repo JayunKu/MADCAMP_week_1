@@ -99,7 +99,7 @@
     <Button
         android:id="@+id/login_button"
         style="@style/commonButton"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="680dp"
         android:background="@drawable/button"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
