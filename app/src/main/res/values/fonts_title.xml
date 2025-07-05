@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="fonts_title">
+        <item name="android:textColor">@color/medium_purple</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">10dp</item>
+        <!--item name="android:font">어쩌구</item>-->
+    </style>
+</resources>
