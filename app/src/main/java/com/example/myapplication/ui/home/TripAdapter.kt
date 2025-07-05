@@ -11,6 +11,11 @@ import com.example.myapplication.R
 class TripAdapter(private val tripList: List<TripPlan>) :
     RecyclerView.Adapter<TripAdapter.TripViewHolder>() {
 
+//    fun addTrip(trip: TripPlan) {
+//        tripList.add(trip)
+//        notifyItemInserted(tripList.size - 1)
+//    }
+
     // 🔹 뷰홀더: 한 줄짜리 뷰 묶음 (calendar_trip_item.xml과 연결됨)
     class TripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgPlace: ImageView = itemView.findViewById(R.id.imgPlace)
