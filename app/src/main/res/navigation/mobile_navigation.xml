@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.example.myapplication.ui.dashboard.DashboardFragment"
         android:label="title_calendar"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_photo"
@@ -20,5 +20,5 @@
     <fragment
         android:id="@+id/navigation_social"
         android:name="com.example.myapplication.ui.dashboard.DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_notifications" />
 </navigation>
