@@ -21,4 +21,10 @@
         android:id="@+id/navigation_social"
         android:name="com.example.myapplication.ui.notifications.NotificationsFragment"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/addTripFragment"
+        android:name="com.example.myapplication.ui.home.AddTripFragment"
+        tools:layout="@layout/calendar_add_trip" />
+
 </navigation>
