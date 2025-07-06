@@ -20,7 +20,9 @@ class SigninActivity:AppCompatActivity() {
                 "메인화면으로"
             ){
                 val intent=Intent(this,MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
+                finish()
             }
         }
     }
