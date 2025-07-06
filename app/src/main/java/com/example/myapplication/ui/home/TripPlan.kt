@@ -4,5 +4,6 @@ data class TripPlan(
     val placeName: String,
     val imageResId: Int,
     val startDate: String,
-    val endDate: String
+    val endDate: String,
+    val planDetail: String
 )
