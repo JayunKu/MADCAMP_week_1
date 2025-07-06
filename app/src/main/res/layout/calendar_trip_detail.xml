@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/detailOuterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+<!--            &lt;!&ndash; 상단 이미지 &ndash;&gt;-->
+<!--            <ImageView-->
+<!--                android:id="@+id/imgDetailTop"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:src="@drawable/sample_image" />-->
+
+        <!-- 목적지 타이틀 -->
+        <TextView
+            android:id="@+id/tvDetailPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#9F84EC"
+            android:padding="12dp"
+            android:text="다낭"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDetailDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2025/06/07 ~ 2025/06/10"
+            android:textColor="#555555"
+            android:textSize="14sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="12dp"/>
+
+        <!-- ⬇️ 일정 리스트가 동적으로 추가될 영역 -->
+        <!-- 예: 날짜별로 회색 박스 + 하단에 시간별 일정 텍스트 -->
+
+        <!-- 예시 블럭 (동적으로 여러개 생길 예정) -->
+        <!-- 아래 부분은 코드에서 동적으로 추가 -->
+        <LinearLayout
+            android:id="@+id/detailContainer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp" />
+
+    </LinearLayout>
+</ScrollView>

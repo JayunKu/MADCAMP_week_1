@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 
-class TripAdapter(private val tripList: MutableList<TripPlan>) :
+class TripAdapter(private val tripList: MutableList<TripPlan>, private val onItemClick: (TripPlan) -> Unit) :
     RecyclerView.Adapter<TripAdapter.TripViewHolder>() {
 
     fun addTrip(trip: TripPlan) {
@@ -36,6 +36,10 @@ class TripAdapter(private val tripList: MutableList<TripPlan>) :
         holder.imgPlace.setImageResource(trip.imageResId)
         holder.tvPlaceName.text = trip.placeName
         holder.tvDates.text = "${trip.startDate} ~ ${trip.endDate}"
+
+        holder.itemView.setOnClickListener {
+            onItemClick(trip) // 클릭 시 외부에서 정의한 동작 실행
+        }
     }
 
     override fun getItemCount(): Int = tripList.size

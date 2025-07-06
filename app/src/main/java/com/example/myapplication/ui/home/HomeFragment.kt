@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.myapplication.R
 
 class HomeFragment : Fragment() {
 
@@ -17,7 +18,11 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var tripAdapter: TripAdapter
-    private val tripList = mutableListOf<TripPlan>()
+    companion object {
+        val tripList = mutableListOf<TripPlan>()
+    }
+
+    //private val tripList = mutableListOf<TripPlan>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +42,17 @@ class HomeFragment : Fragment() {
         }
 
         // 🔹 RecyclerView 어댑터 설정
-        tripAdapter = TripAdapter(tripList)
+        //tripAdapter = TripAdapter(tripList)
+        tripAdapter = TripAdapter(tripList) { trip ->
+            val bundle = Bundle().apply {
+                putString("place", trip.placeName)
+                putString("startDate", trip.startDate)
+                putString("endDate", trip.endDate)
+                putString("planDetail", trip.planDetail)
+            }
+            findNavController().navigate(R.id.tripDetailFragment, bundle)
+        }
+
         binding.recyclerTrips.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerTrips.adapter = tripAdapter
 
