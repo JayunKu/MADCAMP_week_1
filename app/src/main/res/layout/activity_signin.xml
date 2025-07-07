@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.notifications.NotificationsFragment">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/main"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="150dp"/>
+
+    <TextView
+        android:id="@+id/myTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="여행의 모든 것,"
+        android:textColor="#6241D9"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="280dp"/>
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="TripTo"
+        android:textColor="@color/dark_purple"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="320dp"/>
+
+    <GridLayout
+        android:id="@+id/signupGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:orientation="vertical"
+        android:rowCount="2"
+        android:useDefaultMargins="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.722">
+
+
+        <TextView
+            android:id="@+id/userId"
+            style="@style/fonts_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="20dp"
+            android:text="아이디" />
+
+        <EditText
+            android:id="@+id/inputUserId"
+            style="@style/input"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="0dp"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/userPassword"
+            style="@style/fonts_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_margin="20dp"
+            android:text="비밀번호" />
+
+        <EditText
+            android:id="@+id/inputUserPassword"
+            style="@style/input"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="0dp" />
+    </GridLayout>
+
+    <Button
+        android:id="@+id/login_button"
+        style="@style/commonButton"
+        android:layout_marginTop="680dp"
+        android:background="@drawable/button"
+        android:text="@string/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

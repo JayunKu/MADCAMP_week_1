@@ -26,10 +26,16 @@ class MainActivity : AppCompatActivity() { // 앱의 한 화면 액티비티
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration( // 최상위 탭은 뒤로가기 안띄워도 되니까 최상위 탭이 뭔지 설정함. 앱 상단의 툴바와 NavController의 화면 전환을 서로 연동하기 위해 필요.
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_photo, R.id.navigation_social
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration) // 앱의 상단 툴바와 navController를 연결해서 뒤로가기 버튼 눌렀을 때 동작을 자동으로 처리하게 하고 각 화면에서 설정한 label이 자동으로 상단 바 제목으로 표시됨.
         navView.setupWithNavController(navController)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
 }
