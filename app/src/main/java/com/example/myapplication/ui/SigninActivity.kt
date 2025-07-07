@@ -8,6 +8,7 @@ import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 
 class SigninActivity:AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()

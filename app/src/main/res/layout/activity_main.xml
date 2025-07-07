@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize">
 
-    <include
+    <!--<include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBaseline_toTopOf="parent"/>
+        app:layout_constraintBaseline_toTopOf="parent"/>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

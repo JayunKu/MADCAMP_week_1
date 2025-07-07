@@ -150,11 +150,7 @@ class UploadPhotoActivity:AppCompatActivity() {
                             inputDest.text.clear()
                             uploadPhoto.setImageResource(R.color.grey)
                             btn2.visibility=View.GONE
-
                 }
-
+            }
+        }
     }
-
-
-    }
-}
