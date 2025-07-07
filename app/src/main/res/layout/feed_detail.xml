@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- 사진 -->
+
+    <!-- 여행 장소 레이블 -->
+
+    <!-- 여행 장소 -->
+    <ImageView
+        android:id="@+id/imgFeedPhoto"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="112dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvFeedAuthor"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="184dp"
+        android:text="홍길동"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvFeedAuthorLabel" />
+
+    <TextView
+        android:id="@+id/tvFeedPlace"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="184dp"
+        android:text="후쿠오카"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvFeedPlaceLabel" />
+
+    <TextView
+        android:id="@+id/tvFeedPlaceLabel"
+        android:layout_width="86dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:text="여행 장소"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgFeedPhoto" />
+
+    <TextView
+        android:id="@+id/tvFeedAuthorLabel"
+        android:layout_width="86dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="40dp"
+        android:text="작성자"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFeedPlaceLabel" />
+
+    <!-- 작성자 레이블 -->
+
+    <!-- 작성자 -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
