@@ -41,5 +41,4 @@
         android:label="Chat"
         tools:layout="@layout/feed_chat" />
 
-
 </navigation>
