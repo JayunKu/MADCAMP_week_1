@@ -15,7 +15,8 @@
         android:id="@+id/navigation_photo"
         android:name="com.example.myapplication.ui.dashboard.DashboardFragment"
         android:label="title_photo"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_social"

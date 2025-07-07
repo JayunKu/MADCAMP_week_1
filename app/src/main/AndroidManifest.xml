@@ -26,7 +26,8 @@
         <activity android:name=".ui.SigninActivity"/>
         <activity android:name=".SignupActivity"/>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".ui.UploadPhotoActivity"/>
+        <activity android:name=".ui.dashboard.UploadPhotoActivity"/>
+        <!--<activity android:name=".ui.UploadPhotoActivity"/>-->
     </application>
 
 </manifest>

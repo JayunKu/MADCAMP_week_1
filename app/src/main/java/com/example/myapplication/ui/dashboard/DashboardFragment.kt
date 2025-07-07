@@ -1,13 +1,12 @@
 package com.example.myapplication.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -33,10 +32,13 @@ class DashboardFragment : Fragment() {
             //textView.text = it
     //}
         binding.fabAddPhoto.setOnClickListener {
-            Toast.makeText(requireContext(), "FAB 클릭됨!", Toast.LENGTH_SHORT).show()
+            val intent =Intent(requireContext(),UploadPhotoActivity::class.java)
+            startActivity(intent)
         }
+
         return binding.root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
