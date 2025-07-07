@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.CalendarAddTripBinding
 import com.example.myapplication.R
 import androidx.navigation.fragment.findNavController
+import androidx.appcompat.app.AppCompatActivity
+
 
 
 
@@ -56,11 +58,7 @@ class AddTripFragment : Fragment() {
 //                endDate = endDate,
 //                planDetail = plan
 //            )
-
-
         }
-
-
     }
 
     override fun onDestroyView() {
