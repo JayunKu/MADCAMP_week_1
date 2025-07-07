@@ -20,36 +20,48 @@ class SignupActivity:AppCompatActivity() {
         setContentView(R.layout.activity_signup)
         val btn1=findViewById<Button>(R.id.signupButton) as Button
         btn1.setOnClickListener{
+            val name=getInputName()
+            val email=getInputEmail()
+            val password=getInputPassword()
 
-            DialogUtils.showCustomPopup(
-                this,
-                "회원가입이 완료되었어요!",
-                "로그인하러 가기"
-            ){
-                val intent=Intent(this,SigninActivity::class.java)
-                startActivity(intent)
-            }
-        }
-        /*fun signUp(email:String,password:String){
             auth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this){task->
+                .addOnCompleteListener{
+                    task->
                     if(task.isSuccessful){
-                        goToMainActivity(task.result?.user)
-                    }else if (task.exception?.message.isNullOrBlank()){
                         DialogUtils.showCustomPopup(
                             this,
-                            "올바른 정보를 입력해주세요!",
-                            "뒤로 가기"
+                            "회원가입이 완료되었어요!",
+                            "로그인하러 가기"
+                        ){
+                            val intent=Intent(this,SigninActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
+                    else{
+                        DialogUtils.showCustomPopup(
+                            this,
+                            "회원가입에 실패했어요",
+                            "돌아가기"
                         ){
                             val intent=Intent(this,SignupActivity::class.java)
                             startActivity(intent)
                         }
                     }
-                    else{
-                        signIn(email,password)
-                    }
-
                 }
-        }*/
+
+
+        }
+    }
+    private fun getInputEmail():String{
+        val emailEditText=findViewById<android.widget.EditText>(R.id.inputEmail)
+        return emailEditText.text.toString().trim()
+    }
+    private fun getInputPassword():String{
+        val passwordEditText=findViewById<android.widget.EditText>(R.id.inputPw)
+        return passwordEditText.text.toString().trim()
+    }
+    private fun getInputName():String{
+        val nameEditText=findViewById<android.widget.EditText>(R.id.inputName)
+        return nameEditText.text.toString().trim()
     }
 }
