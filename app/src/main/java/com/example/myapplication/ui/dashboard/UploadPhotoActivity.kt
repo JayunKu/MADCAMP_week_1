@@ -12,17 +12,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.myapplication.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import java.util.UUID
+
 //처음에만 사진접근권한 허용 묻도록
 //접근권한 안 물어보고 갤러리에서 사진 가져오는게 안된댕
 class UploadPhotoActivity:AppCompatActivity() {
+    //필요한 변수들 lateinit:초기화하지 않은 변수들
     private lateinit var imageView:ImageView
     private var isPhotoUploaded=false
-
     private lateinit var btn1:Button
     private lateinit var btn2:Button
+    private lateinit var uploadPhoto:ImageView
+    private lateinit var inputDest:EditText
+
+    private var selectedImageUri:Uri?=null
 
     private val pickImageLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         result->
@@ -52,6 +62,7 @@ class UploadPhotoActivity:AppCompatActivity() {
         imageView = findViewById<ImageView>(R.id.uploadPhoto) // 적절한 ID 사용
         btn1=findViewById(R.id.galleryBtn)
         btn2=findViewById(R.id.uploadBtn)
+        inputDest=findViewById(R.id.inputdest)
 
         updateButtonVisibility()
         btn1.setOnClickListener { //갤러리 버튼을 클릭하면 권한 확인 후 사진을 가져오는 함수 실행
@@ -102,5 +113,48 @@ class UploadPhotoActivity:AppCompatActivity() {
             btn1.visibility=View.VISIBLE
             btn2.visibility=View.GONE
         }
+    }
+    //firebase db에 사진과 여행지 정보 저장
+    data class PhotoInfo(
+        val userId:String="",
+        val imageUrl:String="",
+        val description:String=""
+    )
+    fun uploadImageToFirebase() {
+        val user = FirebaseAuth.getInstance().currentUser ?: return //현재 로그인한 사용자 정보
+        val userId = user.uid //user 정보 중 id를 사용자db에 uid로 저장
+        val uri=selectedImageUri?:return //업로드한 사진 uri
+        val description = inputDest.text.toString() //입력한 여행지.
+        val storageRef = FirebaseStorage.getInstance().reference
+        val fileRef = storageRef.child("images/${UUID.randomUUID()}.jpg")
+
+        fileRef.putFile(uri)
+            .continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it //잘못되면 진행중인 것들 종료되도록
+                }
+            }
+                fileRef.downloadUrl
+            }
+            .addOnSuccessListener{downloadUri->
+                    val photoInfo=PhotoInfo(
+                        userId=userId,
+                        imageUrl=downloadUri.toString(),
+                        description=description
+                    )
+                //photos db에 photoInfo(세부항목 3개) 저장
+                    val dbRef= FirebaseDatabase.getInstance().getReference("photos")
+                        .push().setValue(photoInfo)
+                        .addOnSuccessListener{
+                            inputDest.text.clear()
+                            uploadPhoto.setImageResource(R.color.grey)
+                            btn2.visibility=View.GONE
+
+                }
+
+    }
+
+
     }
 }
