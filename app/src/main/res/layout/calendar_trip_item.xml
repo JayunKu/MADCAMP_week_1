@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp">
@@ -20,29 +21,34 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <!-- 여행지 이름 -->
-    <TextView
-        android:id="@+id/tvPlaceName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="여행지 이름"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintTop_toTopOf="@+id/imgPlace"
-        app:layout_constraintStart_toEndOf="@+id/imgPlace"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- 날짜 -->
     <TextView
-        android:id="@+id/tvDates"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="2025/06/07 ~ 2025/06/10"
-        android:textSize="14sp"
-        android:textColor="#666666"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlaceName"
-        app:layout_constraintStart_toStartOf="@+id/tvPlaceName"
+        android:id="@+id/tvPlaceName"
+        android:layout_width="254dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="4dp"
+        android:text="여행지 이름"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/imgPlace" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imgPlace"
+        app:layout_constraintTop_toTopOf="@+id/imgPlace" />
+
+    <TextView
+        android:id="@+id/tvDates"
+        android:layout_width="254dp"
+        android:layout_height="28dp"
+        android:text="2025/06/07 ~ 2025/06/10"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvPlaceName"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlaceName"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

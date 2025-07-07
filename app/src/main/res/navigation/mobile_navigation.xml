@@ -28,4 +28,11 @@
         android:name="com.example.myapplication.ui.home.AddTripFragment"
         tools:layout="@layout/calendar_add_trip" />
 
+    <fragment
+        android:id="@+id/tripDetailFragment"
+        android:name="com.example.myapplication.ui.home.TripDetailFragment"
+        android:label="Trip Detail"
+        tools:layout="@layout/calendar_trip_detail" />
+
+
 </navigation>
