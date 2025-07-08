@@ -63,6 +63,9 @@ class UploadPhotoActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.upload_photo)
 
+        supportActionBar?.title = "사진 업로드"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         imageView = findViewById<ImageView>(R.id.uploadPhoto) // 적절한 ID 사용
         btn1=findViewById(R.id.galleryBtn)
         btn2=findViewById(R.id.uploadBtn)
@@ -77,6 +80,11 @@ class UploadPhotoActivity:AppCompatActivity() {
         btn2.setOnClickListener{
             uploadImageToFirebase()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()  // ← 동작 구현
+        return true
     }
 
     private fun checkPermissionAndOpenGallery() {
