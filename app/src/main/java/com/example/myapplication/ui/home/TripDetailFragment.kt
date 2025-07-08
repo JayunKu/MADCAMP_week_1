@@ -85,7 +85,7 @@ class TripDetailFragment : Fragment() {
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT
                     ).apply {
-                        setMargins(0, 32, 0, 16)
+                        setMargins(0, 80, 0, 16)
                         gravity = Gravity.START
                     }
                 }
