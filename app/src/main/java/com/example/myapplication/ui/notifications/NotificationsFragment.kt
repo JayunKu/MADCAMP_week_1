@@ -58,6 +58,7 @@ class NotificationsFragment : Fragment() {
                     if (receiverId != null) {
                         val bundle = Bundle().apply {
                             putString("receiverId", receiverId)
+                            putString("receiverUsername", clickedUsername)
                         }
                         findNavController().navigate(com.example.myapplication.R.id.chatFragment, bundle)
                     }

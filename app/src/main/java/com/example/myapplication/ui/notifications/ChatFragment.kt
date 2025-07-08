@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import android.widget.TextView
 
 class ChatFragment : Fragment() {
 
@@ -26,6 +27,7 @@ class ChatFragment : Fragment() {
 
     //private val receiverId: String = "test_receiver" // ← 실제 상대방 ID를 여기에 설정
     private lateinit var receiverId: String
+    private var receiverUsername: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +38,10 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         receiverId = arguments?.getString("receiverId") ?: return
+        receiverUsername = arguments?.getString("receiverUsername") ?: "상대방"
+
+        val tvReceiverName = view.findViewById<TextView>(R.id.tvReceiverName)
+        tvReceiverName.text = receiverUsername
 
         recyclerView = view.findViewById(R.id.chatRecyclerView)
         val etMessage = view.findViewById<EditText>(R.id.etMessage)
