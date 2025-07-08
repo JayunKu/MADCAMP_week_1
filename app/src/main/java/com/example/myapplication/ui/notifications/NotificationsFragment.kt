@@ -1,27 +1,26 @@
 package com.example.myapplication.ui.dashboard
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.myapplication.databinding.FragmentDashboardBinding
-import com.example.myapplication.databinding.FragmentNotificationsBinding
-import com.google.firebase.database.FirebaseDatabase
-import com.example.myapplication.model.Photo
-import com.example.myapplication.ui.dashboard.PhotoAdapter
-import com.google.firebase.auth.FirebaseAuth
-
 import androidx.navigation.fragment.findNavController
-import android.os.Handler
-import android.os.Looper
-
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.databinding.FragmentNotificationsBinding
+import com.example.myapplication.model.Photo
+import com.example.myapplication.ui.notifications.PlaceUserAdapter
+import com.example.myapplication.ui.notifications.PlaceUserGroup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
+
+    private val currentUserId by lazy {
+        FirebaseAuth.getInstance().currentUser?.uid ?: ""
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,45 +28,48 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val recyclerView = binding.photoRecyclerView
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val groupedMap = mutableMapOf<String, MutableSet<String>>()  // 장소 → 유저이름 목록
+        val usernameToUid = mutableMapOf<String, String>()            // 유저이름 → UID
 
-        val database = FirebaseDatabase.getInstance().getReference("photos")
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user == null) {
-            // 예: 로그인 화면으로 이동하거나 메시지 표시
-            return root
-        }
-        val userid = user!!.uid
+        FirebaseDatabase.getInstance().getReference("photos")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                for (child in snapshot.children) {
+                    val photo = child.getValue(Photo::class.java)
+                    if (photo != null && photo.userId != currentUserId) {
+                        val username = photo.userEmail?.substringBefore("@") ?: "Unknown"
+                        val place = photo.description ?: "Unknown"
 
-        database.get().addOnSuccessListener { snapshot ->
-            val photoList = mutableListOf<Photo>()
-            for (child in snapshot.children) {
-                val photo = child.getValue(Photo::class.java)
-                if (photo != null&&photo.userId!=userid) {
-                    photoList.add(photo)
+                        groupedMap.getOrPut(place) { mutableSetOf() }.add(username)
+                        usernameToUid[username] = photo.userId
+                    }
                 }
+
+                val groupList = groupedMap.map { (place, users) ->
+                    PlaceUserGroup(place, users.toList())
+                }
+
+                val adapter = PlaceUserAdapter(groupList, usernameToUid) { clickedUsername ->
+                    val receiverId = usernameToUid[clickedUsername]
+                    if (receiverId != null) {
+                        val bundle = Bundle().apply {
+                            putString("receiverId", receiverId)
+                        }
+                        findNavController().navigate(com.example.myapplication.R.id.chatFragment, bundle)
+                    }
+                }
+
+                binding.groupedUserRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+                binding.groupedUserRecyclerView.adapter = adapter
             }
-
-            val adapter = PhotoAdapter(photoList) // 필요시 context 전달
-            recyclerView.adapter = adapter
-        }
-
-        Handler(Looper.getMainLooper()).post {
-            val bundle = Bundle().apply {
-                putString("receiverId", "tIWt7rsdl4agzP7KV3sLk8DaT843") // 임시로 상대방 UID 지정
-            }
-            findNavController().navigate(com.example.myapplication.R.id.chatFragment, bundle)
-        }
-
-        return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

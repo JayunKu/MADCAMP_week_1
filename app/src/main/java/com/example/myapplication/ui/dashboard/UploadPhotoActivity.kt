@@ -176,6 +176,7 @@ class UploadPhotoActivity:AppCompatActivity() {
             return
         }
 
+        val userEmail = user.email
         val userId = user.uid
         val description = inputDest.text.toString().trim()
 
@@ -188,6 +189,7 @@ class UploadPhotoActivity:AppCompatActivity() {
             val imagePath = getPathFromUri(uri)
             if (imagePath != null) {
                 val photoInfo = Photo(
+                    userEmail = userEmail.toString().trim(),
                     userId = userId,
                     imageUrl = imagePath,
                     description = description
