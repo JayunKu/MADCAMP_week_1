@@ -18,8 +18,11 @@ import androidx.core.content.ContextCompat
 import com.example.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import java.util.UUID
+import android.database.Cursor
+import android.provider.DocumentsContract
+import android.provider.OpenableColumns
+import java.io.File
+import com.example.myapplication.model.Photo
 
 //처음에만 사진접근권한 허용 묻도록
 //접근권한 안 물어보고 갤러리에서 사진 가져오는게 안된댕
@@ -35,18 +38,19 @@ class UploadPhotoActivity:AppCompatActivity() {
     private var selectedImageUri:Uri?=null
 
     private val pickImageLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        result->
+            result->
         if(result.resultCode==RESULT_OK){
-            val uri:Uri?=result.data?.data
-            uri?.let{
+            val url:Uri?=result.data?.data
+            url?.let{
                 imageView.setImageURI(it)
+                selectedImageUri=it
             }
         }
     }
     //갤러리 접근권한 요청
     private val requestPermissionLauncher=
         registerForActivityResult(ActivityResultContracts.RequestPermission()){
-            isGranted->
+                isGranted->
             if(isGranted){
                 openGallery()
             }
@@ -69,6 +73,9 @@ class UploadPhotoActivity:AppCompatActivity() {
             checkPermissionAndOpenGallery()
             isPhotoUploaded=true
             updateButtonVisibility()
+        }
+        btn2.setOnClickListener{
+            uploadImageToFirebase()
         }
     }
 
@@ -114,43 +121,101 @@ class UploadPhotoActivity:AppCompatActivity() {
             btn2.visibility=View.GONE
         }
     }
-    //firebase db에 사진과 여행지 정보 저장
-    data class PhotoInfo(
-        val userId:String="",
-        val imageUrl:String="",
-        val description:String=""
-    )
-    fun uploadImageToFirebase() {
-        val user = FirebaseAuth.getInstance().currentUser ?: return //현재 로그인한 사용자 정보
-        val userId = user.uid //user 정보 중 id를 사용자db에 uid로 저장
-        val uri=selectedImageUri?:return //업로드한 사진 uri
-        val description = inputDest.text.toString() //입력한 여행지.
-        val storageRef = FirebaseStorage.getInstance().reference
-        val fileRef = storageRef.child("images/${UUID.randomUUID()}.jpg")
 
-        fileRef.putFile(uri)
-            .continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    throw it //잘못되면 진행중인 것들 종료되도록
-                }
-            }
-                fileRef.downloadUrl
-            }
-            .addOnSuccessListener{downloadUri->
-                    val photoInfo=PhotoInfo(
-                        userId=userId,
-                        imageUrl=downloadUri.toString(),
-                        description=description
+    private fun getPathFromUri(uri: Uri): String? {
+        var path: String? = null
+
+        try {
+            // MediaStore를 통해 선택된 이미지의 경우
+            if (DocumentsContract.isDocumentUri(this, uri)) {
+                val docId = DocumentsContract.getDocumentId(uri)
+
+                if (uri.authority == "com.android.providers.media.documents") {
+                    val id = docId.split(":")[1]
+                    val selection = MediaStore.Images.Media._ID + "=?"
+                    val selectionArgs = arrayOf(id)
+
+                    val cursor: Cursor? = contentResolver.query(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        arrayOf(MediaStore.Images.Media.DATA),
+                        selection,
+                        selectionArgs,
+                        null
                     )
-                //photos db에 photoInfo(세부항목 3개) 저장
-                    val dbRef= FirebaseDatabase.getInstance().getReference("photos")
-                        .push().setValue(photoInfo)
-                        .addOnSuccessListener{
-                            inputDest.text.clear()
-                            uploadPhoto.setImageResource(R.color.grey)
-                            btn2.visibility=View.GONE
+
+                    cursor?.use {
+                        if (it.moveToFirst()) {
+                            val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                            path = it.getString(columnIndex)
+                        }
+                    }
                 }
+            } else if (uri.scheme == "content") {
+                val cursor: Cursor? = contentResolver.query(uri, null, null, null, null)
+                cursor?.use {
+                    if (it.moveToFirst()) {
+                        val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                        path = it.getString(columnIndex)
+                    }
+                }
+            } else if (uri.scheme == "file") {
+                path = uri.path
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return path
+    }
+
+
+    private fun uploadImageToFirebase() {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val userId = user.uid
+        val description = inputDest.text.toString().trim()
+
+        if (description.isEmpty()) {
+            Toast.makeText(this, "여행지를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        selectedImageUri?.let { uri ->
+            val imagePath = getPathFromUri(uri)
+            if (imagePath != null) {
+                val photoInfo = Photo(
+                    userId = userId,
+                    imageUrl = imagePath,
+                    description = description
+                )
+
+                // Firebase Database에 데이터 저장
+                val database = FirebaseDatabase.getInstance()
+                val photosRef = database.getReference("photos")
+
+                // 고유 키 생성하여 데이터 저장
+                val photoKey = photosRef.push().key
+                if (photoKey != null) {
+                    photosRef.child(photoKey).setValue(photoInfo)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "사진이 성공적으로 업로드되었습니다.", Toast.LENGTH_SHORT).show()
+                            finish() // 액티비티 종료
+                        }
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(this, "업로드 실패: ${exception.message}", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    Toast.makeText(this, "데이터베이스 키 생성 실패", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "이미지 경로를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+            }
+        } ?: run {
+            Toast.makeText(this, "이미지를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
     }
+}
