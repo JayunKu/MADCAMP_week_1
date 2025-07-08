@@ -82,7 +82,7 @@
         style="@style/commonButton"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="680dp"
+        android:layout_marginTop="580dp"
         android:onClick="btnClick"
         android:text="회원가입 하기"
         app:layout_constraintEnd_toEndOf="parent"

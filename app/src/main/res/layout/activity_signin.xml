@@ -100,7 +100,7 @@
     <Button
         android:id="@+id/signinButton"
         style="@style/commonButton"
-        android:layout_marginTop="680dp"
+        android:layout_marginTop="580dp"
         android:background="@drawable/button"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"

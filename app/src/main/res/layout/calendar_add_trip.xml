@@ -82,7 +82,7 @@
     <EditText
         android:id="@+id/etPlan"
         android:layout_width="314dp"
-        android:layout_height="202dp"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#EDEDED"
@@ -110,7 +110,7 @@
         android:id="@+id/btnSaveTrip"
         android:layout_width="144dp"
         android:layout_height="33dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button"
         android:elevation="0dp"
         android:paddingHorizontal="24dp"
