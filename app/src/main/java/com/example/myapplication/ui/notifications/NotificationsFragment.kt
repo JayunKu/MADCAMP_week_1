@@ -32,15 +32,34 @@ class NotificationsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val groupedMap = mutableMapOf<String, MutableSet<String>>()  // 장소 → 유저이름 목록
-        val usernameToUid = mutableMapOf<String, String>()            // 유저이름 → UID
+        val currentUserPhotosRef = FirebaseDatabase.getInstance().getReference("photos")
+        val allPhotosRef = FirebaseDatabase.getInstance().getReference("photos")
 
-        FirebaseDatabase.getInstance().getReference("photos")
-            .get()
-            .addOnSuccessListener { snapshot ->
-                for (child in snapshot.children) {
+        // 🔹 Step 1: 내가 올린 장소 목록 수집
+        currentUserPhotosRef.get().addOnSuccessListener { snapshot ->
+            val myPlaces = mutableSetOf<String>()
+
+            for (child in snapshot.children) {
+                val photo = child.getValue(Photo::class.java)
+                if (photo != null && photo.userId == currentUserId) {
+                    val place = photo.description
+                    if (!place.isNullOrBlank()) {
+                        myPlaces.add(place)
+                    }
+                }
+            }
+
+            // 🔹 Step 2: 모든 사진에서, 내가 올린 장소에 해당하면서 다른 유저들의 사진만 필터링
+            val groupedMap = mutableMapOf<String, MutableSet<String>>()  // 장소 → 유저이름 목록
+            val usernameToUid = mutableMapOf<String, String>()            // 유저이름 → UID
+
+            allPhotosRef.get().addOnSuccessListener { snapshot2 ->
+                for (child in snapshot2.children) {
                     val photo = child.getValue(Photo::class.java)
-                    if (photo != null && photo.userId != currentUserId) {
+                    if (photo != null &&
+                        photo.userId != currentUserId &&
+                        photo.description in myPlaces
+                    ) {
                         val username = photo.userEmail?.substringBefore("@") ?: "Unknown"
                         val place = photo.description ?: "Unknown"
 
@@ -67,7 +86,9 @@ class NotificationsFragment : Fragment() {
                 binding.groupedUserRecyclerView.layoutManager = LinearLayoutManager(requireContext())
                 binding.groupedUserRecyclerView.adapter = adapter
             }
+        }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
