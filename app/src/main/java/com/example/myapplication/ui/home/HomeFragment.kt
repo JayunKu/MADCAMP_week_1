@@ -63,6 +63,8 @@ class HomeFragment : Fragment() {
             )
         }
 
+        val hintText = binding.emptyHintText
+
         parentFragmentManager.setFragmentResultListener("addTripResult", viewLifecycleOwner) { _, bundle ->
             val place = bundle.getString("place") ?: return@setFragmentResultListener
             val date = bundle.getString("date") ?: ""
@@ -76,9 +78,13 @@ class HomeFragment : Fragment() {
                 planDetail = plan
             )
 
+            hintText.visibility = View.GONE
+
             tripAdapter.addTrip(trip)
             binding.recyclerTrips.scrollToPosition(0)
         }
+
+        hintText.visibility = if (tripList.isEmpty()) View.VISIBLE else View.GONE
         return root
     }
 
