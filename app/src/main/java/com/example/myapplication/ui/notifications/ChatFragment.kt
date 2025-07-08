@@ -24,7 +24,8 @@ class ChatFragment : Fragment() {
         FirebaseAuth.getInstance().currentUser?.uid ?: "unknown"
     }
 
-    private val receiverId: String = "test_receiver" // ← 실제 상대방 ID를 여기에 설정
+    //private val receiverId: String = "test_receiver" // ← 실제 상대방 ID를 여기에 설정
+    private lateinit var receiverId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +35,8 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        receiverId = arguments?.getString("receiverId") ?: return
+
         recyclerView = view.findViewById(R.id.chatRecyclerView)
         val etMessage = view.findViewById<EditText>(R.id.etMessage)
         val btnSend = view.findViewById<Button>(R.id.btnSend)
@@ -42,8 +45,13 @@ class ChatFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
+//        messageList.add(ChatMessage("테스트 메시지", "user123", "user456"))
+//        adapter.notifyItemInserted(0)
+
         // 🔹 Firebase 경로 설정
-        database = FirebaseDatabase.getInstance().getReference("chat/room1")
+        val chatRoomId = listOf(currentUserId, receiverId).sorted().joinToString("_")
+        database = FirebaseDatabase.getInstance().getReference("chat/$chatRoomId")
+        //database = FirebaseDatabase.getInstance().getReference("chat/room1")
 
         // 🔹 실시간 수신
         database.addChildEventListener(object : ChildEventListener {

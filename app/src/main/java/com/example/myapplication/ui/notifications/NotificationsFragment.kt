@@ -14,6 +14,11 @@ import com.example.myapplication.model.Photo
 import com.example.myapplication.ui.dashboard.PhotoAdapter
 import com.google.firebase.auth.FirebaseAuth
 
+import androidx.navigation.fragment.findNavController
+import android.os.Handler
+import android.os.Looper
+
+
 class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
@@ -48,6 +53,13 @@ class NotificationsFragment : Fragment() {
 
             val adapter = PhotoAdapter(photoList) // 필요시 context 전달
             recyclerView.adapter = adapter
+        }
+
+        Handler(Looper.getMainLooper()).post {
+            val bundle = Bundle().apply {
+                putString("receiverId", "tIWt7rsdl4agzP7KV3sLk8DaT843") // 임시로 상대방 UID 지정
+            }
+            findNavController().navigate(com.example.myapplication.R.id.chatFragment, bundle)
         }
 
         return root
