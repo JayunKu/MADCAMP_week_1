@@ -43,6 +43,7 @@ class UploadPhotoActivity:AppCompatActivity() {
             val url:Uri?=result.data?.data
             url?.let{
                 imageView.setImageURI(it)
+                imageView.setBackgroundColor(android.graphics.Color.TRANSPARENT)
                 selectedImageUri=it
             }
         }

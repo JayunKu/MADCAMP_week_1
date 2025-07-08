@@ -10,9 +10,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
+        android:textSize="20sp"
         android:text=" 사진을 업로드해주세요!"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/underline"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="10dp"
+        android:background="#D0B7F3"
+        app:layout_constraintTop_toBottomOf="@id/uploadPhototitle"
+        app:layout_constraintStart_toStartOf="@id/uploadPhototitle"
+        app:layout_constraintEnd_toEndOf="@id/uploadPhototitle" />
 
     <ImageView
         android:id="@+id/uploadPhoto"
@@ -20,8 +31,9 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="164dp"
+        android:background="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653">
+        app:layout_constraintVertical_bias="0.703">
 
 
         <TextView
