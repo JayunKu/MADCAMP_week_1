@@ -105,22 +105,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/uploadBtn"-->
+<!--        style="@style/commonButton"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginTop="490dp"-->
+<!--        android:onClick="btnClick"-->
+<!--        android:text="사진 업로드"-->
+<!--        android:textSize="8pt"-->
+<!--        android:padding="4dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:visibility="gone" />-->
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/uploadBtn"
         style="@style/commonButton"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="490dp"
         android:onClick="btnClick"
         android:text="사진 업로드"
         android:textSize="8pt"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone" />
 
-<!--    <Button-->
+
+    <!--    <Button-->
 <!--        android:id="@+id/uploadBtn"-->
 <!--        style="@style/commonButton"-->
 <!--        android:layout_centerHorizontal="true"-->

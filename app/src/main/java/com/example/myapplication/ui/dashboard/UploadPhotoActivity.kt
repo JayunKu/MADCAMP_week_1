@@ -64,7 +64,7 @@ class UploadPhotoActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.upload_photo)
 
-        supportActionBar?.title = "사진 업로드"
+        supportActionBar?.title = "upload photos"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         imageView = findViewById<ImageView>(R.id.uploadPhoto) // 적절한 ID 사용
