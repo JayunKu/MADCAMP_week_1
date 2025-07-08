@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/navigation_social"
-        android:name="com.example.myapplication.ui.dashboard.NotificationsFragment"
+        android:name="com.example.myapplication.ui.notifications.NotificationsFragment"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
