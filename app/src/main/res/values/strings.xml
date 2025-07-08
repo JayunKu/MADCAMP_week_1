@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">TripTo</string>
     <string name="title_calendar">계획</string>
     <string name="title_photo">사진</string>
     <string name="title_social">피드</string>
