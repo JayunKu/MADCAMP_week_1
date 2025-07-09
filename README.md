@@ -82,11 +82,11 @@ TripTo는 여행을 ***계획*** 하고,사진으로 ***저장*** 하고, 다른
 
 </aside>
 
-- UI : figma
-- IDE : Android Studio
-- language : kotlin
-- 협업 툴 : GitHub
-- DB : FireBase - Authentication, FireBase - Realtime Database
+- UI : <img src="https://img.shields.io/badge/Figma-#F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+- IDE : <img src="https://img.shields.io/badge/Android-#3DDC84?style=for-the-badge&logo=Android Studio&logoColor=white">
+- language : <img src="https://img.shields.io/badge/Kotlin-#7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white">
+- 협업 툴 : <img src="https://img.shields.io/badge/Github-#181717?style=for-the-badge&logo=Github&logoColor=white">
+- DB :<img src="https://img.shields.io/badge/Firebase-#DD2C00?style=for-the-badge&logo=Firebase&logoColor=white"> -Authentication&Realtime Database
 
 ---
 
