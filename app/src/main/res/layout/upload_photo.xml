@@ -124,21 +124,22 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/uploadBtn"
         style="@style/commonButton"
+        android:layout_width="135dp"
+        android:layout_height="43dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="504dp"
         android:onClick="btnClick"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
         android:text="사진 업로드"
         android:textSize="8pt"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
 
     <!--    <Button-->
