@@ -7,6 +7,20 @@
     android:layout_marginBottom="80dp"
     android:fitsSystemWindows="true">
 
+<!--    <TextView-->
+<!--        android:id="@+id/tvReceiverName"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="상대방 이름"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="0dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
     <TextView
         android:id="@+id/tvReceiverName"
         android:layout_width="0dp"
@@ -15,10 +29,12 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:padding="8dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
@@ -34,36 +50,38 @@
         android:id="@+id/messageInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:gravity="center_vertical"
+        android:layout_marginBottom="-13dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/etMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:background="@drawable/edittext_background"
-            android:hint="메시지 입력"
-            android:layout_marginEnd="8dp"/>
+            android:hint="메시지 입력" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전송"
             android:backgroundTint="@color/light_purple"
+            android:text="전송"
             android:textColor="@android:color/white" />
 
-<!--        <Button-->
-<!--            android:id="@+id/btnSend"-->
-<!--            android:layout_width="76dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@color/light_purple"-->
-<!--            android:text="전송" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/btnSend"-->
+        <!--            android:layout_width="76dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="@color/light_purple"-->
+        <!--            android:text="전송" />-->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
