@@ -120,7 +120,9 @@
             android:layout_column="1"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:minHeight="40dp"
+            android:inputType="numberPassword"/>
     </GridLayout>
 
     <!--    <Button-->

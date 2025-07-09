@@ -5,30 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <TextView
         android:id="@+id/signupTitle"
         style="@style/fonts_title"
-        android:text="안녕하세요,\n반가워요!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="100dp"
+        android:text="안녕하세요,\n반가워요!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/underline"
+        android:layout_width="326dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="4dp"
+        android:background="#D0B7F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signupTitle" />
 
     <GridLayout
         android:id="@+id/signupGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:columnCount="3"
         android:orientation="vertical"
         android:rowCount="3"
-        android:useDefaultMargins="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintVertical_bias="0.55">
 
 
         <TextView
@@ -36,6 +51,8 @@
             style="@style/fonts_content"
             android:layout_row="0"
             android:layout_column="0"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
             android:text="이름" />
 
         <EditText
@@ -44,6 +61,8 @@
             android:layout_row="0"
             android:layout_column="1"
             android:layout_marginLeft="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/grey" />
 
         <TextView
@@ -51,6 +70,8 @@
             style="@style/fonts_content"
             android:layout_row="1"
             android:layout_column="0"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
             android:text="이메일" />
 
         <EditText
@@ -58,13 +79,17 @@
             style="@style/input"
             android:layout_row="1"
             android:layout_column="1"
-            android:layout_marginLeft="0dp"/>
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp" />
 
         <TextView
             android:id="@+id/pw"
             style="@style/fonts_content"
             android:layout_row="2"
             android:layout_column="0"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
             android:text="비밀번호" />
 
         <EditText
@@ -73,18 +98,24 @@
             android:layout_row="2"
             android:layout_column="1"
             android:layout_marginLeft="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
+            android:minHeight="40dp"
             android:hint="6자 이상"
-            />
+            android:inputType="numberPassword"/>
     </GridLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signupButton"
         style="@style/commonButton"
+        android:textSize="10pt"
+        android:layout_height="40dp"
+        android:layout_width="130dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="580dp"
+        android:layout_marginTop="500dp"
         android:onClick="btnClick"
-        android:text="회원가입 하기"
+        android:text="회원가입"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
